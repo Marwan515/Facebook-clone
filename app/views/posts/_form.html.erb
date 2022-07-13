@@ -1,17 +1,10 @@
 <%= form_with(model: post) do |form| %>
-  <% if post.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-        <% post.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.label :post, class:"form-label" %>
+    <%= form.text_field :post, class:"form-control", placeholder:"Post About..." %>
+  </div>
+  <br>
+  <div class="d-grid gap-2 mx-auto">
+    <%= form.submit "Post", class:"btn btn-primary" %>
   </div>
 <% end %>
