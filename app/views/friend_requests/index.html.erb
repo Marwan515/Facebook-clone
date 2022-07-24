@@ -1,0 +1,31 @@
+<div class="container">
+  <% @friend_requests.each do |f| %>  
+    <% if sented_rq(f) %>
+      <div class="container"> 
+        <h4>Friend Requests Sent</h4> 
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">@<%= get_fuser(f.friend_id) %></h5>
+            <h6 class="card-text">You sent Friend Request To @<%= get_fuser(f.friend_id) %></h6>
+          </div>
+          <%= button_to friend_request_path(f), data: { turbo_method: :delete } do %>
+            <span class="btn tbn-danger"><i class="fa-solid fa-xmark"></i> Cancel Request</span>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <% if recieved_rq(f) %>
+      <div class="container">
+        <h4>Friend Requests Recieved</h4>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">@<%= get_fuser(f.user_id) %></h5>
+            <h6 class="card-text">You Recieved Friend Request From @<%= get_fuser(f.user_id) %></h6>
+          </div>
+          <%= button_to friend_request_path(f), data: { turbo_method: :delete } do %>
+            <span class="btn tbn-danger"><i class="fa-solid fa-xmark"></i> Cancel Request</span>
+          <% end %>
+        </div>
+      </div>
+  <% end %>  
+</div>

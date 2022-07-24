@@ -40,7 +40,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
-
+gem 'social-share-button'
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 gem 'bootstrap', '~> 5.1.3'

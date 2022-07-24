@@ -1,10 +1,31 @@
 <p style="color: green"><%= notice %></p>
+<% liked = user_liked(@post) %>
+<div class="container">
+  <div class="card">
+    <div class="card-body text-center">
+      <h5 class="card-title">@<%= get_username(@post.id) %></h5>
+      <p class="card-text"><%= @post.post %></p>
+    </div>
+  </div>
+  
+  <% if liked %>
+    <%= button_to post_like_path(@post, liked), method: :delete do %>
+      <span class="btn btn-danger"><%= likes_count(@post) if likes_count(@post) > 0 %> <i class="fa-solid fa-heart"> Unlike</i></span>
+    <% end %>
+  <% else %>
+    <%= button_to post_likes_path(@post), method: :post do %>
+      <span class="btn"><%= likes_count(@post) if likes_count(@post) > 0 %> <i class="fa-solid fa-heart"> Likes</i></span>
+    <% end %>
+  <% end %>
+  <%= link_to edit_post_path(@post) do %>
+    <span class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i> Edit</span>
+  <% end %>
+  <%= link_to posts_path do %>
+    <span class="btn btn-primary"><i class="fa-solid fa-circle-arrow-left"></i> Back To Posts</span>
+  <% end %>
 
-<%= render @post %>
-
-<div>
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
-  <%= link_to "Back to posts", posts_path %>
-
-  <%= button_to "Destroy this post", @post, method: :delete %>
+  <%= link_to post_path(@post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+    <span class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Delete</span>
+  <% end %>
+  <%= social_share_button_tag(@post.post) %>
 </div>

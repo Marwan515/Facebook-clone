@@ -1,14 +1,26 @@
 <div class="container">
   <div class="text-center">
     <% @posts.each do |p| %>
+      <% liked = user_liked(p) %>
+      <% l_counts = likes_count(p) %>
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">@<%= get_username(p.id) %></h5>
+        <%= link_to p do %>
           <p class="card-text"><%= p.post %></p>
+        <% end %>
           <div class="row align-items-center justify-content-center">
             <span class="col"><i class="fa-solid fa-comment-dots"></i></span>
             <span class="col"><i class="fa-solid fa-share-nodes"></i></span>
-            <span class="col"><i class="fa-solid fa-heart"></i></span>
+            <% if liked %>
+              <%= button_to post_like_path(p, liked), method: :delete do %>
+                <span class="btn btn-danger"><%= l_counts if l_counts > 0 %> <i class="fa-solid fa-heart"> Unlike</i></span>
+              <% end %>
+            <% else %>
+              <%= button_to post_likes_path(p), method: :post do %>
+                <span class="btn"><%= l_counts if l_counts > 0 %> <i class="fa-solid fa-heart"> Likes</i></span>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>

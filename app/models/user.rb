@@ -7,8 +7,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :friend_requests
   has_many :friends_request_pendings, -> { where confirmed: false }, class_name: 'Friend_request', foreign_key: 'friend_id'
-  has_many :comments
-  has_many :likes
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   def friends
     fi = Friend_requests.where(user_id: id, confirmed: true).pluck(:friend_id)

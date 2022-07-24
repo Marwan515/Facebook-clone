@@ -12,5 +12,16 @@
  *
  *= require_tree .
  *= require_self
+ *= require social-share-button
  */
 @import "bootstrap";
+
+$fulvous: #e28413ff;
+.bg-orange {
+    background-color: #85FFBD;
+    background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);        
+}
+
+body {
+    background-image: linear-gradient(120deg, #fccb90 0%, #d57eeb 100%);
+}
